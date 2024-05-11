@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const promiseExample = () => {
+    const friend = new Promise((resolve, reject) => {
+      let isChocolateEveryDay = true; // Set to true for this example
+      if (isChocolateEveryDay) {
+        resolve("Promise Resolved");
+      } else {
+        reject("Promise Rejected");
+      }
+    });
+    friend
+      .then((resolve) => {
+        console.log(`${resolve} `);
+      })
+      .catch((error) => {
+        console.log(`${reject}`);
+      });
+  };
+
+  useEffect(() => {
+    promiseExample();
+  }, []);
+
+  return <div className="App"></div>;
 }
 
 export default App;
