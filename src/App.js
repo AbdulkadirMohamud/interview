@@ -2,26 +2,36 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const promiseExample = () => {
-    const friend = new Promise((resolve, reject) => {
-      let isChocolateEveryDay = true; // Set to true for this example
-      if (isChocolateEveryDay) {
-        resolve("Promise Resolved");
+  const promiseOne = (paramOne) => {
+    return new Promise((resolve, reject) => {
+      // For demonstration, let's assume it always resolves
+      resolve(paramOne + " is a good man");
+    });
+  };
+
+  const promiseTwo = (paramTwo) => {
+    return new Promise((resolve, reject) => {
+      if (paramTwo === "promise Resolved") {
+        resolve("Abdulkadir is still a good man");
       } else {
-        reject("Promise Rejected");
+        reject("promise Rejected");
       }
     });
-    friend
-      .then((resolve) => {
-        console.log(`${resolve} `);
-      })
-      .catch((error) => {
-        console.log(`${reject}`);
-      });
+  };
+
+  const asyncMain = async () => {
+    try {
+      let res = await promiseOne("Abdulkadir");
+      console.log(res);
+      let resTwo = await promiseTwo("promise Resolved");
+      console.log(resTwo);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    promiseExample();
+    asyncMain();
   }, []);
 
   return <div className="App"></div>;
